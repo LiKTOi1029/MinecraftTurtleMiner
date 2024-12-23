@@ -1,5 +1,7 @@
 # MinecraftTurtleMiner
 
+**HEADS UP! THIS IS A WORK IN PROGRESS AND DOES NOT FUNCTION YET!**
+
 ## About This Project
 This is the minecraft turtle miner that I originally started as a little personal project of mine that has grown dramatically into one of my largest projects to date. I will be posting my updates on github from now on because I was looking for a script like this about 3 years ago and found none. That's why I am not only uploading it to GitHub but also putting it in the public domain. Do whatever you want with this I don't care.
 
