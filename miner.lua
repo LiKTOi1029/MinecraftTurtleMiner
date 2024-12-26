@@ -34,8 +34,10 @@ function fUnknownBlock()
 	print("unknown block!")
 end
 
-function fFoundOre() 
-	print("found ore!")
+function fFoundOre(oreBlock)
+	for num = 1, 3, 1 do
+	table.insert(remainingNodes, oreBlock)
+	end 
 end
 
 function fSelfChecker()
@@ -43,16 +45,16 @@ function fSelfChecker()
 end
 
 function fChecker()
-	if data == fLogBlock() then return fFoundOre()
-	elseif dataup == fLogBlock() then return fFoundOre()
-	elseif datadown == fLogBlock() then return fFoundOre()
-	else local check1 = fUnknownBlock() end
+	if data == fLogBlock() then return fFoundOre(data)
+	elseif dataup == fLogBlock() then return fFoundOre(dataup)
+	elseif datadown == fLogBlock() then return fFoundOre(datadown)
+	else local check1 = fUnknownBlock(data,dataup,datadown) end
 	turtle.turnRight()
-	if data == fLogBlock() then return fFoundOre() 
-	else local check2 = fUnknownBlock() end
+	if data == fLogBlock() then return fFoundOre(data)
+	else local check2 = fUnknownBlock(data,dataup,datadown) end
 	turtle.turnLeft(2)
-	if data == fLogBlock() then return fFoundOre()
-	else local check3 = fUnknownBlock() end
+	if data == fLogBlock() then return fFoundOre(data)
+	else local check3 = fUnknownBlock(data,dataup,datadown) end
 	return check1, check2, check3
 end
 
