@@ -6,7 +6,7 @@ dataup = blockDataUp["name"]
 datadown = blockDataDown["name"]
 acceptableOres = {[1] = "minecraft:iron_ore",[2] = "minecraft:gold_ore",[3] = "minecraft:diamond_ore",[4] = "appliedenergistics2:quartz_ore",[5] = "appliedenergistics2:charged_quartz_ore",[6] = "minecraft:coal_ore",}
 tRemainingNodes = {}
-tDirections = {'n' = 0, 'e' = 1, 's' = 2, 'w' = 3}
+tDirections = {["n"] = 0, ["e"] = 1, ["s"] = 2, ["w"] = 3}
 function fAppendList(tBlockList)
 	for number, tBlockList in ipairs(tBlockList) do
         table.insert(tRemainingNodes, tBlockList)
@@ -99,11 +99,6 @@ end
 
 function fBranchMining()
 	local branchDistance
-	local coalSlot, torchSlot, cobblestoneSlot, chestSlot, chunkloaderSlot, refuel = turtle.select(1), turtle.select(2), turtle.select(3), turtle.select(4), turtle.select(5), turtle.refuel()
-	local forward, backward, left, right, up, down = turtle.forward(), turtle.backward(), turtle.turnLeft(), turtle.turnRight(), turtle.up(), turtle.down()
-	local placeDown, place, placeUp = turtle.placeDown(), turtle.place(), turtle.placeUp()
-	local dig, digDown, digUp = turtle.dig(), turtle.digDown(), turtle.digUp()
-	local fuelLevel = turtle.getFuelLevel()
 	local branchNum, layerNum, direction = fChoiceMenu()
 	local branchLen = 2
 	if branchNum == 1 then
@@ -115,23 +110,23 @@ function fBranchMining()
 		fBranchMining()
 	end
 	if fuelLevel < 15000 then
-		coalSlot
+		turtle.select(1)
 		repeat
-			refuel
+			turtle.refuel()
 		until fuelLevel > 15000
 	end
-	up
-	torchSlot
-	assert(placeDown)
+	turtle.up()
+	turtle.select(2)
+	assert(turtle.placeDown()))
 	turtle.turnRight(direction)
 	for num3, branchNum, num3=num3+1 do
-		dig
-		forward
+		turtle.dig()
+		turtle.forward()
 		--check
-		digDown
-		down
+		turtle.digDown()
+		turtle.down()
 		--check
-		up
+		turtle.up()
 	end
 	
 end
