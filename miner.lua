@@ -118,8 +118,8 @@ function fBranchMining()
 	turtle.up()
 	turtle.select(2)
 	assert(turtle.placeDown())
-	turtle.turnRight(direction)
-	for num3 = 1, branchNum, 1 do
+	if direction ~= 0 then turtle.turnRight(direction) end
+	for num3 = 1, 13, 1 do
 		turtle.dig()
 		turtle.forward()
 		--check
