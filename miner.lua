@@ -119,7 +119,7 @@ function fBranchMining()
 	turtle.select(2)
 	assert(turtle.placeDown())
 	turtle.turnRight(direction)
-	for num3 = 1, branchNum, num3=num3+1 do
+	for num3 = 1, branchNum, 1 do
 		turtle.dig()
 		turtle.forward()
 		--check
