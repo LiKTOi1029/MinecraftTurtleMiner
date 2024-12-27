@@ -109,11 +109,11 @@ function fBranchMining()
 		print("something is wrong with the value ("..tostring(branchNum)..") you inputted!")
 		fBranchMining()
 	end
-	if fuelLevel < 15000 then
+	if turtle.fuelLevel < 15000 then
 		turtle.select(1)
 		repeat
 			turtle.refuel()
-		until fuelLevel > 15000
+		until turtle.fuelLevel > 15000
 	end
 	turtle.up()
 	turtle.select(2)
