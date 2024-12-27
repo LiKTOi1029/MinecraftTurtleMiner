@@ -125,10 +125,10 @@ function fBranchMining()
 	for num3, branchNum, num3=num3+1 do
 		dig
 		forward
-		fChecker()
+		--check
 		digDown
 		down
-		fChecker()
+		--check
 		up
 	end
 	
