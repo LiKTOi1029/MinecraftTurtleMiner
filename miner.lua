@@ -6,7 +6,8 @@ dataup = blockDataUp["name"]
 datadown = blockDataDown["name"]
 acceptableOres = {[1] = "minecraft:iron_ore",[2] = "minecraft:gold_ore",[3] = "minecraft:diamond_ore",[4] = "appliedenergistics2:quartz_ore",[5] = "appliedenergistics2:charged_quartz_ore",[6] = "minecraft:coal_ore",}
 tRemainingNodes = {}
-tDirections = {'n' = 0, 'e' = 1, 's' = 2, 'w' = 3}
+tDirections = {["n"] = 0, ["e"] = 1, ["s"] = 2, ["w"] = 3}
+directionChoosingDone = false
 function fAppendList(tBlockList)
 	for number, tBlockList in ipairs(tBlockList) do
         table.insert(tRemainingNodes, tBlockList)
@@ -34,8 +35,10 @@ function fUnknownBlock()
 	print("unknown block!")
 end
 
-function fFoundOre() 
-	print("found ore!")
+function fFoundOre(oreBlock)
+	for num = 1, 3, 1 do
+		table.insert(remainingNodes, oreBlock)
+	end 
 end
 
 function fSelfChecker()
@@ -43,16 +46,16 @@ function fSelfChecker()
 end
 
 function fChecker()
-	if data == fLogBlock() then return fFoundOre()
-	elseif dataup == fLogBlock() then return fFoundOre()
-	elseif datadown == fLogBlock() then return fFoundOre()
-	else local check1 = fUnknownBlock() end
+	if data == fLogBlock() then return fFoundOre(data)
+	elseif dataup == fLogBlock() then return fFoundOre(dataup)
+	elseif datadown == fLogBlock() then return fFoundOre(datadown)
+	else local check1 = fUnknownBlock(data,dataup,datadown) end
 	turtle.turnRight()
-	if data == fLogBlock() then return fFoundOre() 
-	else local check2 = fUnknownBlock() end
+	if data == fLogBlock() then return fFoundOre(data)
+	else local check2 = fUnknownBlock(data,dataup,datadown) end
 	turtle.turnLeft(2)
-	if data == fLogBlock() then return fFoundOre()
-	else local check3 = fUnknownBlock() end
+	if data == fLogBlock() then return fFoundOre(data)
+	else local check3 = fUnknownBlock(data,dataup,datadown) end
 	return check1, check2, check3
 end
 
@@ -97,11 +100,6 @@ end
 
 function fBranchMining()
 	local branchDistance
-	local coalSlot, torchSlot, cobblestoneSlot, chestSlot, chunkloaderSlot, refuel = turtle.select(1), turtle.select(2), turtle.select(3), turtle.select(4), turtle.select(5), turtle.refuel()
-	local forward, backward, left, right, up, down = turtle.forward(), turtle.backward(), turtle.turnLeft(), turtle.turnRight(), turtle.up(), turtle.down()
-	local placeDown, place, placeUp = turtle.placeDown(), turtle.place(), turtle.placeUp()
-	local dig, digDown, digUp = turtle.dig(), turtle.digDown(), turtle.digUp()
-	local fuelLevel = turtle.getFuelLevel()
 	local branchNum, layerNum, direction = fChoiceMenu()
 	local branchLen = 2
 	if branchNum == 1 then
@@ -112,26 +110,41 @@ function fBranchMining()
 		print("something is wrong with the value ("..tostring(branchNum)..") you inputted!")
 		fBranchMining()
 	end
-	if fuelLevel < 15000 then
-		coalSlot
+	if turtle.getFuelLevel() < 15000 then
+		turtle.select(1)
 		repeat
-			refuel
-		until fuelLevel > 15000
+			turtle.refuel()
+		until turtle.getFuelLevel() > 15000
 	end
-	up
-	torchSlot
-	assert(placeDown)
-	turtle.turnRight(direction)
-	for num3, branchNum, num3=num3+1 do
-		dig
-		forward
-		fChecker()
-		digDown
-		down
-		fChecker()
-		up
+	turtle.up()
+	turtle.select(2)
+	assert(turtle.placeDown())
+	if direction ~= 0 and not directionChoosingDone then
+		for num4 = 1, direction, 1 do
+			turtle.turnRight()
+		end
+		directionChoosingDone = true
 	end
-	
+	for num5 = 1, branchDistance, 3 do
+		for num3 = 1, 13, 1 do
+			turtle.dig()
+			turtle.forward()
+			--check
+			turtle.digDown()
+			turtle.down()
+			--check
+			turtle.up()
+		end
+		turtle.turnRight()
+		for num6 = 0, branchDistance, 3 do
+			turtle.dig()
+			turtle.forward()
+			--check
+			turtle.digDown()
+			turtle.down()
+			--check
+		end
+	end
 end
 fBranchMining()
 --https://pastebin.com/8BvSBn1K
