@@ -7,6 +7,7 @@ datadown = blockDataDown["name"]
 acceptableOres = {[1] = "minecraft:iron_ore",[2] = "minecraft:gold_ore",[3] = "minecraft:diamond_ore",[4] = "appliedenergistics2:quartz_ore",[5] = "appliedenergistics2:charged_quartz_ore",[6] = "minecraft:coal_ore",}
 tRemainingNodes = {}
 tDirections = {["n"] = 0, ["e"] = 1, ["s"] = 2, ["w"] = 3}
+directionChoosingDone = false
 function fAppendList(tBlockList)
 	for number, tBlockList in ipairs(tBlockList) do
         table.insert(tRemainingNodes, tBlockList)
@@ -36,7 +37,7 @@ end
 
 function fFoundOre(oreBlock)
 	for num = 1, 3, 1 do
-	table.insert(remainingNodes, oreBlock)
+		table.insert(remainingNodes, oreBlock)
 	end 
 end
 
@@ -118,7 +119,12 @@ function fBranchMining()
 	turtle.up()
 	turtle.select(2)
 	assert(turtle.placeDown())
-	if direction ~= 0 then turtle.turnRight() end
+	if direction ~= 0 and not directionChoosingDone then
+		for num4 = 0, direction, 1 do
+			turtle.turnRight()
+		end
+		directionChoosingDone = true
+	end
 	for num3 = 1, 13, 1 do
 		turtle.dig()
 		turtle.forward()
