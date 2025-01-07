@@ -120,21 +120,31 @@ function fBranchMining()
 	turtle.select(2)
 	assert(turtle.placeDown())
 	if direction ~= 0 and not directionChoosingDone then
-		for num4 = 0, direction, 1 do
+		for num4 = 1, direction, 1 do
 			turtle.turnRight()
 		end
 		directionChoosingDone = true
 	end
-	for num3 = 1, 13, 1 do
-		turtle.dig()
-		turtle.forward()
-		--check
-		turtle.digDown()
-		turtle.down()
-		--check
-		turtle.up()
+	for num5 = 1, branchDistance, 3 do
+		for num3 = 1, 13, 1 do
+			turtle.dig()
+			turtle.forward()
+			--check
+			turtle.digDown()
+			turtle.down()
+			--check
+			turtle.up()
+		end
+		turtle.turnRight()
+		for num6 = 0, branchDistance, 3 do
+			turtle.dig()
+			turtle.forward()
+			--check
+			turtle.digDown()
+			turtle.down()
+			--check
+		end
 	end
-	
 end
 fBranchMining()
 --https://pastebin.com/8BvSBn1K
