@@ -1,8 +1,4 @@
 CHUNKLOADER = "mychunkloader:chunkloader"
---[[
-THIS IS ONLY WORKS ON CRAFTOS IN A MINECRAFT WORLD ON A TURTLE
-THIS WAS NOT MADE FOR VANILLA LUA AND THUS WILL THROW MANY, MANY ERRORS!
---]]
 function __BEGIN__()
 	
 end
@@ -14,5 +10,5 @@ function __CHECK__()
 		if turtle.getItemDetail(num1) == "minecraft:torch" then print("success") end
 	end
 end
-
+function __MAIN__
 --https://pastebin.com/8BvSBn1K
