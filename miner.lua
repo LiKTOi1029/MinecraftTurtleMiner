@@ -9,23 +9,34 @@ function __CHECK__()
 		print(textutils.serialise(turtle.getItemDetail(num1,true)))
 		if turtle.getItemDetail(num1) == "minecraft:torch" then
 			print("success") 
-			cTorch[1], cTorch[2] = turtle.getItemDetail(num1), num1
+			cTorch["Details"], cTorch["Location"] = turtle.getItemDetail(num1), num1
 		end
 		if turtle.getItemDetail(num1) == "minecraft:coal_block" then
 			print("success")
-			cCoalBlock[1], cCoalBlock[2] = turtle.getItemDetail(num1), num1
+			cCoalBlock["Details"], cCoalBlock["Location"] = turtle.getItemDetail(num1), num1
 		end
 		if turtle.getItemDetail(num1) == "minecraft:chest" then 
 			print("success")
-			cChest[1], cChest[2] = turtle.getItemDetail(num1), num1
+			cChest["Details"], cChest["Location"] = turtle.getItemDetail(num1), num1
 		end
 		if turtle.getItemDetail(num1) == "mychunkloader:chunkloader" then
 			print("success")
-			cChunkloader[1], cChunkloader[2] = turtle.getItemDetail(num1), num1
+			cChunkloader["Details"], cChunkloader["Location"] = turtle.getItemDetail(num1), num1
 		end
 		if turtle.getItemDetail(num1) == "minecraft:cobblestone" then 
 			print("success")
-			cCobblestone[1], cCobblestone[2] = turtle.getItemDetail(num1), num1
+			cCobblestone["Details"], cCobblestone["Location"] = turtle.getItemDetail(num1), num1
+		end
+	end
+	for num1 = 6, 16, 1 do
+		if turtle.getItemDetail(num1) then
+			error("Please empty all slots past slot 6. They are required for storage purposes.")
+		end
+	end
+	if turtle.getFuelLevel() < 20000 then
+		turtle.select(cCoalBlock["Location"])
+		while turtle.getFuelLevel() < 20000 do
+			turtle.refuel()
 		end
 	end
 	if not cTorch then
@@ -39,10 +50,14 @@ function __CHECK__()
 	elseif not cChest then
 		return nil
 	else
-		return {cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader}
+		return {["Torches"] = cTorch,
+				["CoalBlock"] = cCoalBlock,
+				["Chest"] = cChest,
+				["Cobblestone"] = cCobblestone,
+				["Chunkloader"] = cChunkloader}
 	end
 end
 function __MAIN__()
-	
+	cImportantItems = 
 end
 --https://pastebin.com/8BvSBn1K
