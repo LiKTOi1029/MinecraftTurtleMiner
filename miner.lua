@@ -10,5 +10,7 @@ function __CHECK__()
 		if turtle.getItemDetail(num1) == "minecraft:torch" then print("success") end
 	end
 end
-function __MAIN__
+function __MAIN__()
+
+end
 --https://pastebin.com/8BvSBn1K
