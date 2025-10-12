@@ -7,10 +7,25 @@ function __CHECK__()
 	os.sleep(1)
 	for num1 = 1, 5, 1 do
 		print(textutils.serialise(turtle.getItemDetail(num1,true)))
-		if turtle.getItemDetail(num1) == "minecraft:torch" then print("success") end
+		if turtle.getItemDetail(num1) == "minecraft:torch" then
+			print("success") 
+			
+		end
+		if turtle.getItemDetail(num1) == "minecraft:coal_block" then
+			print("success")
+		end
+		if turtle.getItemDetail(num1) == "minecraft:chest" then 
+			print("success")
+		end
+		if turtle.getItemDetail(num1) == CHUNKLOADER then
+			print("success")
+		end
+		if turtle.getItemDetail(num1) == "minecraft:cobblestone" then 
+			print("success")
+		end
 	end
 end
 function __MAIN__()
-
+	
 end
 --https://pastebin.com/8BvSBn1K
