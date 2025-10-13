@@ -84,13 +84,40 @@ function __MINING__()
 		Validifier(Inspected)
 		turtle.turnRight()
 	end
-	local function Tunneling()	
+	local function TunnelingColumns()
 		turtle.select(cImportantItems["Torches"]["Location"])
 		turtle.placeDown()
 		turtle.select(cImportantItems["Chunkloader"]["Location"])
 		turtle.digUp()
 		turtle.placeUp()
-		for num1 = 1, Pattern["Length"], 1 do
+		for num1 = 0, Pattern["Length"], 1 do
+			if num1 % 2 == 1 then
+				turtle.dig()
+				turtle.forward()
+				CheckSurroundingBlocks()
+				turtle.digDown()
+				turtle.down()
+				CheckSurroundingBlocks()
+			else
+				turtle.dig()
+				turtle.forward()
+				CheckSurroundingBlocks()
+				turtle.digUp()
+				turle.up()
+				CheckSurroundingBlocks()
+			end
+		end
+	end
+	local function TunnelingRows()
+		local LengthOfRow = (Patterns["Tunnels"]-1)*(Patterns["PerTunnel"])
+		turtle.select(cImportantItems["Torches"]["Location"])
+		turtle.placeDown()
+		turtle.turnRight()
+		for num1 = 0, LengthOfRow, 1 do
+			if num1 % 3 == 0 then
+				turtle.select(cImportantItems["Torches"]["Location"])
+				turtle.placeDown()
+			end
 			if num1 % 2 == 1 then
 				turtle.dig()
 				turtle.forward()
