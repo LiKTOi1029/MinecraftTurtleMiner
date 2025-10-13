@@ -7,33 +7,38 @@ function __CHECK__()
 		if SelectedItem == "minecraft:torch" then
 			print("Torches: success") 
 			cTorch["Details"], cTorch["Location"] = SelectedItem, num1
-		else
-			error("No torches between slots 1 and 5")
 		end
 		if SelectedItem == "minecraft:coal_block" then
 			print("CoalBlock: success")
 			cCoalBlock["Details"], cCoalBlock["Location"] = SelectedItem, num1
-		else
-			error("No coal blocks between slots 1 and 5")
 		end
 		if SelectedItem == "minecraft:chest" then 
 			print("Chest: success")
 			cChest["Details"], cChest["Location"] = SelectedItem, num1
-		else
-			error("No chests between slots 1 and 5")
 		end
 		if SelectedItem == "mychunkloader:chunkloader" then
 			print("Chunkloader: success")
 			cChunkloader["Details"], cChunkloader["Location"] = SelectedItem, num1
-		else
-			error("No chunkloaders between slots 1 and 5")
 		end
 		if SelectedItem == "minecraft:cobblestone" then 
 			print("Cobblestone: success")
 			cCobblestone["Details"], cCobblestone["Location"] = SelectedItem, num1
-		else
-			error("No cobblestone between slots 1 and 5")
 		end
+	end
+	if #cCobblestone = 0 then
+		error("Add cobbletsone (a maximum of 64) to any one of the first 5 slots of the turtle")
+	end
+	if #cChunkloader = 0 then
+		error("Add chunkloaders (a maximum of 64) to any one of the first 5 slots of the turtle")
+	end
+	if #cChest = 0 then
+		error("Add chests (a maximum of 64) to any one of the first 5 slots of the turtle")
+	end
+	if #cCoalBlock = 0 then
+		error("Add coal blocks (a maximum of 64) to any one of the first 5 slots of the turtle")
+	end
+	if #cTorch = 0 then
+		error("Add torches (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
 	for num1 = 6, 16, 1 do
 		local SelectedItem = textutils.serialise(turtle.getItemDetail(num1))
@@ -53,15 +58,52 @@ function __CHECK__()
 			["Cobblestone"] = cCobblestone,
 			["Chunkloader"] = cChunkloader}
 end
-function __FOUND_ORE__()
-
+function __FOUND_ORE__(Block)
+	
 end
 function __MINING__()
-	local StartingBlock = "minecraft:torch"
+	local Pattern, cImportantItems = {["Length"] = 13, ["PerTunnel"] = 3, ["Tunnels"] = 5}, __CHECK__()	
+	local ValidOres = {"minecraft:iron_ore", "minecraft:coal_ore", "minecraft:diamond_ore", "minecraft:lapis_lazuli_ore", "minecraft:gold_ore"}
+	local function CheckSurroundingBlocks()
+		local function Validifer(Block)
+			for Number, Value in ipairs(ValidOres) do
+				if textutils.serialise(Block)["name"] == Value then
+					return __FOUND_ORE__(Value)
+				end
+			end
+		end
+		local Inspected = turtle.inspectUp()
+		Validifier(Inspected)
+		turtle.turnRight()
+		local Inspected = turtle.inspect()
+		Validifier(Inspected)
+		turtle.turnLeft(2)
+		local Inspected = turtle.inspect()
+		Validifier(Inspected)
+	end
+	local function Tunneling()	
+		turtle.select(cImportantItems["Torches"]["Location"])
+		turtle.placeDown()
+		turtle.select(cImportantItems["Chunkloader"]["Location"])
+		turtle.digUp()
+		turtle.placeUp()
+		for num1 = 1, Pattern["Length"], 1 do
+			if num1 % 2 == 1 then
+				turtle.dig()
+				turtle.forward()
+				turtle.digDown()
+				turtle.down()
+			else
+				turtle.dig()
+				turtle.forward()
+				turtle.digUp()
+				turle.up()
+			end
+		end
+	end
 	
 end
 function __MAIN__()
-	local cImportantItems = __CHECK__()
 	
 end
 --https://pastebin.com/8BvSBn1K
