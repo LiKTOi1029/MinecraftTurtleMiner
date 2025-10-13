@@ -72,6 +72,8 @@ function __MINING__()
 				end
 			end
 		end
+		local Inspected = turtle.inspectDown()
+		Validifier(Inspected)
 		local Inspected = turtle.inspectUp()
 		Validifier(Inspected)
 		turtle.turnRight()
@@ -80,6 +82,7 @@ function __MINING__()
 		turtle.turnLeft(2)
 		local Inspected = turtle.inspect()
 		Validifier(Inspected)
+		turtle.turnRight()
 	end
 	local function Tunneling()	
 		turtle.select(cImportantItems["Torches"]["Location"])
@@ -91,13 +94,17 @@ function __MINING__()
 			if num1 % 2 == 1 then
 				turtle.dig()
 				turtle.forward()
+				CheckSurroundingBlocks()
 				turtle.digDown()
 				turtle.down()
+				CheckSurroundingBlocks()
 			else
 				turtle.dig()
 				turtle.forward()
+				CheckSurroundingBlocks()
 				turtle.digUp()
 				turle.up()
+				CheckSurroundingBlocks()
 			end
 		end
 	end
