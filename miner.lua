@@ -156,6 +156,7 @@ function __MINING__()
 		TunnelingColumns()
 		if Iterations % 2 == 1 then
 			TravelingBetweenTunnels(true)
+			turtle.up()
 		else 
 			TravelingBetweenTunnels(false)
 		end
