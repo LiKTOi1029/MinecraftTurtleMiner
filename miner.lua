@@ -93,6 +93,25 @@ function __MINING__()
 		Validifier(Inspected)
 		turtle.turnRight()
 	end
+	local function Tunneling(Index, Limit, TorchBoolean)
+		if TorchBoolean then
+			turtle.select(cImportantItems["Torches"]["Location"])
+			turtle.placeDown()
+		end
+		for num1 = Index, Limit, 1 do
+			turtle.dig()
+			turtle.forward()
+			--CheckSurroundingBlocks
+			turtle.digDown()
+			turtle.down()
+			--CheckSurroundingBlocks
+			turtle.up()
+		end
+		if TorchBoolean then
+			turtle.select(cImportantItems["Torches"]["Location"])
+			turtle.placeDown()
+		end
+	end
 	local function TunnelingColumns()
 		turtle.select(cImportantItems["Torches"]["Location"])
 		turtle.placeDown()
@@ -109,8 +128,7 @@ function __MINING__()
 		turtle.placeDown()
 	end
 	local function TunnelingRows()
-		local LengthOfRow = (Pattern["Tunnels"]-1)*(Pattern["PerTunnel"])
-		for num1 = 0, LengthOfRow-1, 1 do
+		for num1 = 0, LengthOfRow, 1 do
 			turtle.dig()
 			turtle.forward()
 			--CheckSurroundingBlocks()
@@ -140,12 +158,12 @@ function __MINING__()
 	turtle.digUp()
 	turtle.placeUp()
 	
-	TunnelingColumns()
+	Tunneling(1, Pattern["Length"], true)
 	turtle.turnRight()
-	TunnelingRows()
+	Tunneling(0, (Pattern["Tunnels"]-1)*(Pattern["PerTunnel"])-1, false)
 	turtle.turnRight()
 	for Iterations = 1, Pattern["Tunnels"]-1, 1 do
-		TunnelingColumns()
+		Tunneling(1, Pattern["Length"], true)
 		if Iterations % 2 == 1 then
 			TravelingBetweenTunnels(true)
 		else
