@@ -62,7 +62,7 @@ function __FOUND_ORE__(Block)
 	
 end
 function __MINING__()
-	local Pattern, cImportantItems = {["Length"] = 13, ["PerTunnel"] = 3, ["Tunnels"] = 5}, __CHECK__()	
+	local Pattern, TunnelsLeft, cImportantItems = {["Length"] = 13, ["PerTunnel"] = 3, ["Tunnels"] = 5}, 5, __CHECK__()
 	local ValidOres = {"minecraft:iron_ore", "minecraft:coal_ore", "minecraft:diamond_ore", "minecraft:lapis_lazuli_ore", "minecraft:gold_ore"}
 	local function CheckSurroundingBlocks()
 		local function Validifer(Block)
@@ -94,22 +94,22 @@ function __MINING__()
 			if num1 % 2 == 1 then
 				turtle.dig()
 				turtle.forward()
-				CheckSurroundingBlocks()
+				--CheckSurroundingBlocks()
 				turtle.digDown()
 				turtle.down()
-				CheckSurroundingBlocks()
+				--CheckSurroundingBlocks()
 			else
 				turtle.dig()
 				turtle.forward()
-				CheckSurroundingBlocks()
+				--CheckSurroundingBlocks()
 				turtle.digUp()
 				turle.up()
-				CheckSurroundingBlocks()
+				--CheckSurroundingBlocks()
 			end
 		end
 	end
 	local function TunnelingRows()
-		local LengthOfRow = (Patterns["Tunnels"]-1)*(Patterns["PerTunnel"])
+		local LengthOfRow = (Pattern["Tunnels"]-1)*(Pattern["PerTunnel"])
 		turtle.select(cImportantItems["Torches"]["Location"])
 		turtle.placeDown()
 		turtle.turnRight()
@@ -121,21 +121,34 @@ function __MINING__()
 			if num1 % 2 == 1 then
 				turtle.dig()
 				turtle.forward()
-				CheckSurroundingBlocks()
+				--CheckSurroundingBlocks()
 				turtle.digDown()
 				turtle.down()
-				CheckSurroundingBlocks()
+				--CheckSurroundingBlocks()
 			else
 				turtle.dig()
 				turtle.forward()
-				CheckSurroundingBlocks()
+				--CheckSurroundingBlocks()
 				turtle.digUp()
 				turle.up()
-				CheckSurroundingBlocks()
+				--CheckSurroundingBlocks()
 			end
 		end
 	end
-	
+	local function TravelingBetweenTunnels(Boolean)
+		if Boolean == true then
+			turtle.turnRight()
+			turtle.forward(Pattern["PerTunnel"])
+			turtle.turnRight()
+		else
+			turtle.turnLeft()
+			turtle.forward(Pattern["PerTunnel"])
+			turtle.turnLeft()
+		end
+	end
+	for Iterations = 1, Patterns["Tunnels"], 5 do
+		
+	end
 end
 function __MAIN__()
 	
