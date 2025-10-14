@@ -7,7 +7,7 @@ if CoordinateFileRead then
 	local Contents = CoordinateFileRead:read("*all")
 	Contents:gsub(", ","-")
 	local ParsingTable = {}
-	for num1 = 1, Contents.len(), 1 do
+	for num1 = 1, Contents:len(), 1 do
 		if Contents:sub(num1,num1) ~= "-" then
 			table.insert(ParsingTable, Contents:sub(num1, num1))
 		end
