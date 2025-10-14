@@ -3,7 +3,7 @@ function __CHECK__()
 	if RCSRead then
 		print("RCS Found!")
 		RCSRead:close()
-		rcs = require("RCS.lua")
+		-- rcs = require("RCS.lua")
 	else
 		error("This script requires RCS.lua. Please install it on your turtle.")
 	end

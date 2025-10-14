@@ -9,8 +9,11 @@ and found none. That's why I am not only uploading it to GitHub but also I will 
 
 ## Installation
 
-Please either use the command `wget https://github.com/LiKTOi1029/MinecraftTurtleMiner/raw/refs/heads/main/miner.lua` OR the pastebin command 
-`pastebin get 8BvSBn1K miner.lua` to obtain the file. Make sure pastebin is not a blacklisted website in your cc tweaked settings
+Please use the command `wget https://github.com/LiKTOi1029/MinecraftTurtleMiner/raw/refs/heads/main/miner.lua` to obtain `miner.lua`.
+This script also required another script which is also included in this repository called `RCS.lua` and it is responsible for using 
+an X,Y,Z coordinates system without the GPS feature of cc tweaked. You can think of it like budget GPS for the turtle to know where it is 
+relative to wherever you first ran RCS. Additionally, whatever other scripts that also use RCS are perfectly cross-compatible with 
+other scripts using the same system. Simply install it by `wget https://github.com/LiKTOi1029/MinecraftTurtleMiner/raw/refs/heads/development/RCS.lua` 
 
 ## Instructions
 
