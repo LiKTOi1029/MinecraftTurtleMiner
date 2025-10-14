@@ -92,8 +92,10 @@ function __MINING__()
 		turtle.select(cImportantItems["Torches"]["Location"])
 		turtle.placeDown()
 		turtle.select(cImportantItems["Chunkloader"]["Location"])
+		turtle.up()
 		turtle.digUp()
 		turtle.placeUp()
+		turtle.down()
 		for num1 = 0, Pattern["Length"], 1 do
 			if num1 % 2 == 1 then
 				turtle.dig()
@@ -107,7 +109,7 @@ function __MINING__()
 				turtle.forward()
 				--CheckSurroundingBlocks()
 				turtle.digUp()
-				turle.up()
+				turtle.up()
 				--CheckSurroundingBlocks()
 			end
 		end
