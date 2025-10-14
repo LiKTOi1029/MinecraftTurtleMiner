@@ -1,5 +1,5 @@
 function __CHECK__()
-	local cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader = {[1] = "hello"}, {}, {}, {}, {}
+	local cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader = {}, {}, {}, {}, {[1] = "hello"}
 	local Debug = "[DEBUG]: "
 	term.write("Checking inventory, please wait\n")
 	os.sleep(1)
@@ -89,6 +89,8 @@ function __MINING__()
 		turtle.turnRight()
 	end
 	local function TunnelingColumns()
+		turtle.select(cImportantItems["Torches"]["Location"])
+		turtle.placeDown()
 		for num1 = 1, Pattern["Length"], 1 do
 			turtle.dig()
 			turtle.forward()
@@ -111,10 +113,6 @@ function __MINING__()
 			turtle.down()
 			--CheckSurroundingBlocks()
 			turtle.up()
-			if num1 % 3 == 0 then
-				turtle.select(cImportantItems["Torches"]["Location"])
-				turtle.placeDown()
-			end
 		end
 	end
 	local function TravelingBetweenTunnels(Boolean)
@@ -133,8 +131,6 @@ function __MINING__()
 		end
 	end
 	turtle.up()
-	turtle.select(cImportantItems["Torches"]["Location"])
-	turtle.placeDown()
 	turtle.select(cImportantItems["Chunkloader"]["Location"])
 	turtle.digUp()
 	turtle.placeUp()
