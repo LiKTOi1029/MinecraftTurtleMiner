@@ -15,13 +15,13 @@ if CoordinateFileRead then
 	end
 	for Number, Value in ipairs(ParsingTable) do
 		if Number == 1 then
-			RCS.Coordinates["X"] = Value
+			RCS.Coordinates["X"] = tonumber(Value)
 		elseif Number == 2 then
-			RCS.Coordinates["Y"] = Value
+			RCS.Coordinates["Y"] = tonumber(Value)
 		elseif Number == 3 then
-			RCS.Coordinates["Z"] = Value
+			RCS.Coordinates["Z"] = tonumber(Value)
 		else
-			Switch = Value
+			Switch = tonumber(Value)
 		end
 	end
 	CoordinateFileRead:close()
