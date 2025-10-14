@@ -1,5 +1,6 @@
 RCS = {}
 RCS.__index = RCS
+RCS.Coordinates = {}
 
 CoordinateFileRead = io.open("CoordinateData.txt", "r")
 
