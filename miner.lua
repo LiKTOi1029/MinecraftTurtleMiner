@@ -52,6 +52,7 @@ function __CHECK__()
 			turtle.refuel()
 		end
 	end
+	print("Turtle refueled and ready for action.")
 	return {["Torches"] = cTorch,
 			["CoalBlock"] = cCoalBlock,
 			["Chest"] = cChest,
@@ -146,8 +147,16 @@ function __MINING__()
 			turtle.turnLeft()
 		end
 	end
-	for Iterations = 1, Patterns["Tunnels"], 5 do
-		
+	TunnelingColumns()
+	TunnelingRows()
+	turtle.turnRight()
+	for Iterations = 1, Patterns["Tunnels"]-1, 1 do
+		TunnelingColumns()
+		if Iterations % 2 == 1 then
+			TravelingBetweenTunnels(true)
+		else 
+			TravelingBetweenTunnels(false)
+		end
 	end
 end
 function __MAIN__()
