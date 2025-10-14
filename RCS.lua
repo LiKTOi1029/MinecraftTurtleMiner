@@ -14,6 +14,7 @@ if CoordinateFileRead then
 		end
 	end
 	for Number, Value in ipairs(ParsingTable) do
+		print(Value)
 		if Number == 1 then
 			RCS.Coordinates["X"] = tonumber(Value)
 		elseif Number == 2 then
