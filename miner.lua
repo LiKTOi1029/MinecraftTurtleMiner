@@ -159,4 +159,5 @@ function __MINING__()
 		end
 	end
 end
+__MINING__()
 --https://pastebin.com/8BvSBn1K
