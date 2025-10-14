@@ -96,7 +96,7 @@ function __MINING__()
 		turtle.digUp()
 		turtle.placeUp()
 		for num1 = 0, Pattern["Length"], 1 do
-			if num1 % 2 == 1 then
+			if num1 % 2 == 0 then
 				turtle.dig()
 				turtle.forward()
 				--CheckSurroundingBlocks()
@@ -118,26 +118,19 @@ function __MINING__()
 		turtle.select(cImportantItems["Torches"]["Location"])
 		turtle.placeDown()
 		turtle.turnRight()
-		for num1 = 0, LengthOfRow, 1 do
+		for num1 = 1, LengthOfRow, 1 do
 			if num1 % 3 == 0 then
+				turtle.up()
 				turtle.select(cImportantItems["Torches"]["Location"])
 				turtle.placeDown()
 			end
-			if num1 % 2 == 1 then
-				turtle.dig()
-				turtle.forward()
-				--CheckSurroundingBlocks()
-				turtle.digDown()
-				turtle.down()
-				--CheckSurroundingBlocks()
-			else
-				turtle.dig()
-				turtle.forward()
-				--CheckSurroundingBlocks()
-				turtle.digUp()
-				turtle.up()
-				--CheckSurroundingBlocks()
-			end
+			turtle.dig()
+			turtle.forward()
+			--CheckSurroundingBlocks()
+			turtle.digDown()
+			turtle.down()
+			--CheckSurroundingBlocks()
+			turtle.up()
 		end
 	end
 	local function TravelingBetweenTunnels(Boolean)
@@ -154,7 +147,7 @@ function __MINING__()
 	TunnelingColumns()
 	TunnelingRows()
 	turtle.turnRight()
-	for Iterations = 1, Patterns["Tunnels"]-1, 1 do
+	for Iterations = 1, Pattern["Tunnels"]-1, 1 do
 		TunnelingColumns()
 		if Iterations % 2 == 1 then
 			TravelingBetweenTunnels(true)
