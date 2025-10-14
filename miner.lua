@@ -2,7 +2,7 @@ function __CHECK__()
 	local Testfile = io.open("RCS.lua", "r")
 	if Testfile then
 		print("RCS Found!")
-		-- To be implemented
+		rcs = require("RCS.lua")
 	end
 	local cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader = {}, {}, {}, {}, {[1] = "hello"}
 	local Debug = "[DEBUG]: "
@@ -85,13 +85,13 @@ function __MINING__()
 		Validifier(Inspected)
 		local Inspected = turtle.inspectUp()
 		Validifier(Inspected)
-		turtle.turnRight()
+		rcs.turnRight()
 		local Inspected = turtle.inspect()
 		Validifier(Inspected)
-		turtle.turnLeft(2)
+		rcs.turnLeft(2)
 		local Inspected = turtle.inspect()
 		Validifier(Inspected)
-		turtle.turnRight()
+		rcs.turnRight()
 	end
 	local function Tunneling(Index, Limit, TorchBoolean)
 		if TorchBoolean then
@@ -100,12 +100,12 @@ function __MINING__()
 		end
 		for num1 = Index, Limit, 1 do
 			turtle.dig()
-			turtle.forward()
+			rcs.forward()
 			--CheckSurroundingBlocks
 			turtle.digDown()
-			turtle.down()
+			rcs.down()
 			--CheckSurroundingBlocks
-			turtle.up()
+			rcs.up()
 		end
 		if TorchBoolean then
 			turtle.select(cImportantItems["Torches"]["Location"])
@@ -117,12 +117,12 @@ function __MINING__()
 		turtle.placeDown()
 		for num1 = 1, Pattern["Length"], 1 do
 			turtle.dig()
-			turtle.forward()
+			rcs.forward()
 			--CheckSurroundingBlocks()
 			turtle.digDown()
-			turtle.down()
+			rcs.down()
 			--CheckSurroundingBlocks()
-			turtle.up()
+			rcs.up()
 		end
 		turtle.select(cImportantItems["Torches"]["Location"])
 		turtle.placeDown()
@@ -130,38 +130,38 @@ function __MINING__()
 	local function TunnelingRows()
 		for num1 = 0, LengthOfRow, 1 do
 			turtle.dig()
-			turtle.forward()
+			rcs.forward()
 			--CheckSurroundingBlocks()
 			turtle.digDown()
-			turtle.down()
+			rcs.down()
 			--CheckSurroundingBlocks()
-			turtle.up()
+			rcs.up()
 		end
 	end
 	local function TravelingBetweenTunnels(Boolean)
 		if Boolean == true then
-			turtle.turnRight()
+			rcs.turnRight()
 			for num1 = 1, Pattern["PerTunnel"] do
-				turtle.forward()
+				rcs.forward()
 			end
-			turtle.turnRight()
+			rcs.turnRight()
 		else
-			turtle.turnLeft()
+			rcs.turnLeft()
 			for num1 = 1, Pattern["PerTunnel"] do
-				turtle.forward()
+				rcs.forward()
 			end
-			turtle.turnLeft()
+			rcs.turnLeft()
 		end
 	end
-	turtle.up()
+	rcs.up()
 	turtle.select(cImportantItems["Chunkloader"]["Location"])
 	turtle.digUp()
 	turtle.placeUp()
 	
 	Tunneling(1, Pattern["Length"], true)
-	turtle.turnRight()
+	rcs.turnRight()
 	Tunneling(0, (Pattern["Tunnels"]-1)*(Pattern["PerTunnel"])-1, false)
-	turtle.turnRight()
+	rcs.turnRight()
 	for Iterations = 1, Pattern["Tunnels"]-1, 1 do
 		Tunneling(1, Pattern["Length"], true)
 		if Iterations % 2 == 1 then
