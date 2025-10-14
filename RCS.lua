@@ -83,17 +83,17 @@ function RCS.forward()
 end
 
 function RCS.back()
-	turtle.forward()
+	turtle.back()
 	CoordinatesUpdater(false)
 end
 
 function RCS.up()
-	turtle.forward()
+	turtle.up()
 	CoordinatesUpdater(1)
 end
 
 function RCS.down()
-	turtle.forward()
+	turtle.down()
 	CoordinatesUpdater(-1)
 end
 
