@@ -25,19 +25,19 @@ function __CHECK__()
 			cCobblestone["Details"], cCobblestone["Location"] = SelectedItem, num1
 		end
 	end
-	if #cCobblestone = 0 then
+	if #cCobblestone == 0 then
 		error("Add cobbletsone (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
-	if #cChunkloader = 0 then
+	if #cChunkloader == 0 then
 		error("Add chunkloaders (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
-	if #cChest = 0 then
+	if #cChest == 0 then
 		error("Add chests (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
-	if #cCoalBlock = 0 then
+	if #cCoalBlock == 0 then
 		error("Add coal blocks (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
-	if #cTorch = 0 then
+	if #cTorch == 0 then
 		error("Add torches (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
 	for num1 = 6, 16, 1 do
@@ -60,7 +60,7 @@ function __CHECK__()
 			["Chunkloader"] = cChunkloader}
 end
 function __FOUND_ORE__(Block)
-	
+	-- Not done yet.
 end
 function __MINING__()
 	local Pattern, TunnelsLeft, cImportantItems = {["Length"] = 13, ["PerTunnel"] = 3, ["Tunnels"] = 5}, 5, __CHECK__()
@@ -158,8 +158,5 @@ function __MINING__()
 			TravelingBetweenTunnels(false)
 		end
 	end
-end
-function __MAIN__()
-	
 end
 --https://pastebin.com/8BvSBn1K
