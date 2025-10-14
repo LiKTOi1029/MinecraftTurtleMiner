@@ -1,4 +1,9 @@
 function __CHECK__()
+	local Testfile = io.open("RCS.lua", "r")
+	if Testfile then
+		print("RCS Found!")
+		-- To be implemented
+	end
 	local cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader = {}, {}, {}, {}, {[1] = "hello"}
 	local Debug = "[DEBUG]: "
 	term.write("Checking inventory, please wait\n")
