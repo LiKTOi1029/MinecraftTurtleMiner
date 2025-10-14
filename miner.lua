@@ -4,7 +4,7 @@ function __CHECK__()
 	term.write("Checking inventory, please wait\n")
 	os.sleep(1)
 	for num1 = 1, 5, 1 do
-		local SelectedItem = textutils.serialise(turtle.getItemDetail(num1))["name"]
+		local SelectedItem = turtle.getItemDetail(num1)["name"]
 		print(Debug..SelectedItem)
 		if SelectedItem == "minecraft:torch" then
 			print("Torches: success") 
@@ -29,7 +29,7 @@ function __CHECK__()
 		print(Debug..#cTorch.." "..#cCoalBlock..""..#cChunkloader..""..#cChest..""..#cCobblestone)
 	end
 	if not cCobblestone["Details"] then
-		error("Add cobbletsone (a maximum of 64) to any one of the first 5 slots of the turtle")
+		error("Add cobblestone (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
 	if not cTorch["Details"] then
 		error("Add chunkloaders (a maximum of 64) to any one of the first 5 slots of the turtle")
@@ -44,7 +44,7 @@ function __CHECK__()
 		error("Add torches (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
 	for num1 = 6, 16, 1 do
-		local SelectedItem = textutils.serialise(turtle.getItemDetail(num1))
+		local SelectedItem = turtle.getItemDetail(num1)
 		if SelectedItem then
 			error("Please empty slot "..num1..". Slots past slot 5 are used for Random Access Storage.")
 		end
