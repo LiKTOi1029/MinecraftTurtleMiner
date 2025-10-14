@@ -1,9 +1,11 @@
 function __CHECK__()
-	local cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader = {}, {}, {}, {}, {}
+	local cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader = {[1] = "hello"}, {}, {}, {}, {}
+	local Debug = "[DEBUG]: "
 	term.write("Checking inventory, please wait\n")
 	os.sleep(1)
 	for num1 = 1, 5, 1 do
 		local SelectedItem = textutils.serialise(turtle.getItemDetail(num1))["name"]
+		print(Debug..SelectedItem)
 		if SelectedItem == "minecraft:torch" then
 			print("Torches: success") 
 			cTorch["Details"], cTorch["Location"] = SelectedItem, num1
@@ -24,6 +26,7 @@ function __CHECK__()
 			print("Cobblestone: success")
 			cCobblestone["Details"], cCobblestone["Location"] = SelectedItem, num1
 		end
+		print(Debug..#cTorch.." "..#cCoalBlock..""..#cChunkloader..""..#cChest..""..#cCobblestone)
 	end
 	if not cCobblestone["Details"] then
 		error("Add cobbletsone (a maximum of 64) to any one of the first 5 slots of the turtle")
