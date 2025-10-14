@@ -89,14 +89,8 @@ function __MINING__()
 		turtle.turnRight()
 	end
 	local function TunnelingColumns()
-		turtle.up()
-		turtle.select(cImportantItems["Torches"]["Location"])
-		turtle.placeDown()
-		turtle.select(cImportantItems["Chunkloader"]["Location"])
-		turtle.digUp()
-		turtle.placeUp()
-		for num1 = 0, Pattern["Length"], 1 do
-			if num1 % 2 == 0 then
+		for num1 = 1, Pattern["Length"], 1 do
+			if num1 % 2 == 1 then
 				turtle.dig()
 				turtle.forward()
 				--CheckSurroundingBlocks()
@@ -118,7 +112,7 @@ function __MINING__()
 		turtle.select(cImportantItems["Torches"]["Location"])
 		turtle.placeDown()
 		turtle.turnRight()
-		for num1 = 1, LengthOfRow, 1 do
+		for num1 = 0, LengthOfRow-1, 1 do
 			if num1 % 3 == 0 then
 				turtle.up()
 				turtle.select(cImportantItems["Torches"]["Location"])
@@ -136,14 +130,25 @@ function __MINING__()
 	local function TravelingBetweenTunnels(Boolean)
 		if Boolean == true then
 			turtle.turnRight()
-			turtle.forward(Pattern["PerTunnel"])
+			for num1 = 1, Pattern["PerTunnel"] do
+				turtle.forward()
+			end
 			turtle.turnRight()
 		else
 			turtle.turnLeft()
-			turtle.forward(Pattern["PerTunnel"])
+			for num1 = 1, Pattern["PerTunnel"] do
+				turtle.forward()
+			end
 			turtle.turnLeft()
 		end
 	end
+	turtle.up()
+	turtle.select(cImportantItems["Torches"]["Location"])
+	turtle.placeDown()
+	turtle.select(cImportantItems["Chunkloader"]["Location"])
+	turtle.digUp()
+	turtle.placeUp()
+	
 	TunnelingColumns()
 	TunnelingRows()
 	turtle.turnRight()
