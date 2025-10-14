@@ -112,7 +112,6 @@ function __MINING__()
 			--CheckSurroundingBlocks()
 			turtle.up()
 			if num1 % 3 == 0 then
-				turtle.up()
 				turtle.select(cImportantItems["Torches"]["Location"])
 				turtle.placeDown()
 			end
@@ -121,13 +120,13 @@ function __MINING__()
 	local function TravelingBetweenTunnels(Boolean)
 		if Boolean == true then
 			turtle.turnRight()
-			for num1 = 0, Pattern["PerTunnel"] do
+			for num1 = 1, Pattern["PerTunnel"] do
 				turtle.forward()
 			end
 			turtle.turnRight()
 		else
 			turtle.turnLeft()
-			for num1 = 0, Pattern["PerTunnel"] do
+			for num1 = 1, Pattern["PerTunnel"] do
 				turtle.forward()
 			end
 			turtle.turnLeft()
