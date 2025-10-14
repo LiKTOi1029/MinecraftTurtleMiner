@@ -1,17 +1,20 @@
 # MinecraftTurtleMiner
 
-**HEADS UP! THIS IS A WORK IN PROGRESS AND DOES NOT FUNCTION YET!**
+**HEADS UP! THIS BOT WORKS, BUT NOT ALL FEATURES HAVE BEEN IMPLEMENTED**
 
 ## About This Project
 This is the minecraft turtle miner that I originally started as a little personal project of mine that has grown dramatically into one of my largest projects to date. I will be posting my updates on github from now on because I was looking for a script like this about 3 years ago and found none. That's why I am not only uploading it to GitHub but also putting it in the public domain. Do whatever you want with this I don't care.
 
-## Notes
-When using this script there are a few things you should keep in mind when first running it in your world:
+## Installation
 
-1. Firstly, this is intended for my own personal minecraft 1.12.2 modded world. This means that if you are using a different version of CraftOS it may malfunction. I am not updating this for those versions do it yourself.
-2. Secondly, if you do end up getting this working, please change the `acceptableOres` table to include all of the ores you want the bot to mine out (and update the IDs that are out of date due to the updated minecraft IDs).
-3. Thirdly, please do also use the computer script `not added yet` that is provided on a `COMPUTER` using an `ENDER MODEM`. The `ENDER MODEM` must be on both the turtle and the computer. The bot does not need these to function, however a computer would be beneficial in keeping track of the turtle's location and status.
-4. Fourthly, be sure to use a `CHUNKLOADER` mod. This should preferably be a block that loads chunks without taking in any fuel. There should at least be 2 chunk loader blocks in its 5th slot (row 2, column 1 from the top left).
+Please either use the command `wget https://github.com/LiKTOi1029/MinecraftTurtleMiner/raw/refs/heads/main/miner.lua` OR the pastebin command 
+`pastebin get 8BvSBn1K miner.lua` to obtain the file. Make sure pastebin is not a blacklisted website in your cc tweaked settings
 
-## Final Remarks
-If this bot doesn't work for you, please don't be rude about it in the issues. **This is not my full time job.**
+## Instructions
+
+In the first 5 slots of the turtle, place 64 Torches, 64 Cobblestone, 64 Chests, 64 Chunkloaders, and 64 Coal blocks in no specific order. 
+You should also make sure none of the other slots have anything in them. If they do, the turtle will throw an error as those slots are used 
+as free storage. Another important note is this requires the [Chunkloader mod by Lordwissend](https://www.curseforge.com/minecraft/mc-mods/chunkloader-simple) 
+to function properly. Otherwise, be prepared for a buggy experience. Please start the turtle at the desired y level underground, this turtle 
+does not dig straight down, rather tunnels straight forward. This means that you can't just set it and forget it on the surface you have to go 
+underground before running `miner.lua`.
