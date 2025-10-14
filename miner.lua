@@ -1,8 +1,11 @@
 function __CHECK__()
-	local Testfile = io.open("RCS.lua", "r")
-	if Testfile then
+	local RCSRead = io.open("RCS.lua", "r")
+	if RCSRead then
 		print("RCS Found!")
+		RCSRead:close()
 		rcs = require("RCS.lua")
+	else
+		error("This script requires RCS.lua. Please install it on your turtle.")
 	end
 	local cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader = {}, {}, {}, {}, {[1] = "hello"}
 	local Debug = "[DEBUG]: "
