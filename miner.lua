@@ -135,7 +135,7 @@ function __MINING__()
 				turtle.forward()
 				--CheckSurroundingBlocks()
 				turtle.digUp()
-				turle.up()
+				turtle.up()
 				--CheckSurroundingBlocks()
 			end
 		end
