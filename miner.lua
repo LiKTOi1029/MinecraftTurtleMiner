@@ -113,11 +113,6 @@ function __MINING__()
 		turtle.placeDown()
 		turtle.turnRight()
 		for num1 = 0, LengthOfRow-1, 1 do
-			if num1 % 3 == 0 then
-				turtle.up()
-				turtle.select(cImportantItems["Torches"]["Location"])
-				turtle.placeDown()
-			end
 			turtle.dig()
 			turtle.forward()
 			--CheckSurroundingBlocks()
@@ -125,6 +120,11 @@ function __MINING__()
 			turtle.down()
 			--CheckSurroundingBlocks()
 			turtle.up()
+			if num1 % 3 == 0 then
+				turtle.up()
+				turtle.select(cImportantItems["Torches"]["Location"])
+				turtle.placeDown()
+			end
 		end
 	end
 	local function TravelingBetweenTunnels(Boolean)
@@ -159,6 +159,7 @@ function __MINING__()
 			turtle.up()
 		else 
 			TravelingBetweenTunnels(false)
+			turtle.up()
 		end
 	end
 end
