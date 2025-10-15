@@ -2,41 +2,25 @@ RCS = {}
 RCS.__index = RCS
 RCS.Coordinates = {}
 
-CoordinateFileRead = io.open("CoordinateData.txt", "r")
+CoordinateFileRead = io.open("CoordinateData.lua", "r")
 
 if CoordinateFileRead then
-	local Contents = CoordinateFileRead:read("*all")
-	Contents:gsub(", ","-")
-	local ParsingTable = {}
-	for num1 = 1, Contents:len(), 1 do
-		if Contents:sub(num1,num1) ~= "-" then
-			table.insert(ParsingTable, Contents:sub(num1, num1))
-		end
-	end
-	for Number, Value in ipairs(ParsingTable) do
-		if Number == 1 then
-			RCS.Coordinates["X"] = tonumber(Value)
-			print(Value)
-		elseif Number == 2 then
-			RCS.Coordinates["Y"] = tonumber(Value)
-			print(Value)
-		elseif Number == 3 then
-			RCS.Coordinates["Z"] = tonumber(Value)
-			print(Value)
+	local ParsingTable = require("CoordinateData")
+	for Key, Value in pairs(ParsingTable) do
+		if Key ~= "Switch" then
+			RCS.Coordinates[Key] = Value
 		else
-			Switch = tonumber(Value)
-			print(Value)
+			Switch = Value
 		end
 	end
-	CoordinateFileRead:close()
 else
 	RCS.Coordinates = {["X"] = 0, ["Y"] = 0, ["Z"] = 0}
 	Switch = 0	
 end
 
 function FileUpdater()
-	local CoordinateDataFile = io.open("CoordinateData.txt", "w+")
-	local Contents = RCS.Coordinates["X"]..", "..RCS.Coordinates["Y"]..", "..RCS.Coordinates["Z"]..", "..Switch
+	local CoordinateDataFile = io.open("CoordinateData.lua", "w+")
+	local Contents = "return { \[\"X\"\] = "..RCS.Coordinates["X"]..", \[\"Y\"\] = "..RCS.Coordinates["Y"]..", \[\"Z\"\] = "..RCS.Coordinates["Z"]..", \[\"Switch\"\] = "..Switch.."}"
 	CoordinateDataFile:write(Contents)
 	CoordinateDataFile:close()
 end
