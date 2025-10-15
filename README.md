@@ -13,7 +13,7 @@ Please use the command `wget https://github.com/LiKTOi1029/MinecraftTurtleMiner/
 This script also required another script which is also included in this repository called `RCS.lua` and it is responsible for using 
 an X,Y,Z coordinates system without the GPS feature of cc tweaked. You can think of it like budget GPS for the turtle to know where it is 
 relative to wherever you first ran RCS. Additionally, whatever other scripts that also use RCS are perfectly cross-compatible with 
-other scripts using the same system. Simply install it by `wget https://github.com/LiKTOi1029/MinecraftTurtleMiner/raw/refs/heads/development/RCS.lua` 
+other scripts using the same system. Simply install it by `wget https://github.com/LiKTOi1029/MinecraftTurtleMiner/raw/refs/heads/main/RCS.lua` 
 
 ## Instructions
 
