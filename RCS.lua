@@ -91,12 +91,11 @@ end
 function RCS.Save(Name)
 	local Instance = setmetatable({}, RCS)
 	local Instance.Save = {["X"] = RCS.Coordinates["X"], ["Y"] = RCS.Coordinates["Y"], ["Z"] = RCS.Coordinates["Z"]}
-	if not Instance.Name then
-		local Instance.Name = Name
-		InternalCache[Instance.Name] = Instance.Save
-	else
+	if InternalChache[Instance.Name] then
 		error("The save name "..Instance.Name.."already exists!")
 	end
+	local Instance.Name = Name
+	InternalCache[Instance.Name] = Instance.Save
 	return Instance
 end
 

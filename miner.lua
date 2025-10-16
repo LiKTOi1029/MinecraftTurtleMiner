@@ -113,32 +113,6 @@ function __MINING__()
 			turtle.placeDown()
 		end
 	end
-	local function TunnelingColumns()
-		turtle.select(cImportantItems["Torches"]["Location"])
-		turtle.placeDown()
-		for num1 = 1, Pattern["Length"], 1 do
-			turtle.dig()
-			rcs.forward()
-			--CheckSurroundingBlocks()
-			turtle.digDown()
-			rcs.down()
-			--CheckSurroundingBlocks()
-			rcs.up()
-		end
-		turtle.select(cImportantItems["Torches"]["Location"])
-		turtle.placeDown()
-	end
-	local function TunnelingRows()
-		for num1 = 0, LengthOfRow, 1 do
-			turtle.dig()
-			rcs.forward()
-			--CheckSurroundingBlocks()
-			turtle.digDown()
-			rcs.down()
-			--CheckSurroundingBlocks()
-			rcs.up()
-		end
-	end
 	local function TravelingBetweenTunnels(Boolean)
 		if Boolean == true then
 			rcs.turnRight()
