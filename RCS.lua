@@ -89,7 +89,8 @@ function RCS.down()
 end
 
 function RCS.Save(Name)
-	local Instance = setmetatable({}, RCS)
+	local Instance = {}
+	setmetatable(Instance, RCS)
 	local Instance.Save = {["X"] = RCS.Coordinates["X"], ["Y"] = RCS.Coordinates["Y"], ["Z"] = RCS.Coordinates["Z"]}
 	if InternalChache[Instance.Name] then
 		error("The save name "..Instance.Name.."already exists!")
