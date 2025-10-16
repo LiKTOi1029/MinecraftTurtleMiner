@@ -1,6 +1,7 @@
 RCS = {}
 RCS.__index = RCS
 RCS.Coordinates = {}
+InternalCache = {}
 
 CoordinateFileRead = io.open("CoordinateData.lua", "r")
 
@@ -26,14 +27,15 @@ function FileUpdater()
 end
 
 function DirectionUpdater(Boolean)
-	if Switch == 3 and Boolean then
-		Switch = 0
-	elseif Switch == 0 and not Boolean then
-		Switch = 3
-	elseif Boolean then
+	if Boolean then
 		Switch = Switch + 1
 	else
 		Switch = Switch - 1
+	end
+	if Switch > 3 then
+		Switch = 0
+	elseif Switch < 0 then
+		Switch = 3
 	end
 end
 
@@ -84,6 +86,26 @@ end
 function RCS.down()
 	turtle.down()
 	CoordinatesUpdater(-1)
+end
+
+function RCS.Save(Name)
+	local Instance = setmetatable({}, RCS)
+	local Instance.Save = {["X"] = RCS.Coordinates["X"], ["Y"] = RCS.Coordinates["Y"], ["Z"] = RCS.Coordinates["Z"]}
+	if not Instance.Name then
+		local Instance.Name = Name
+		InternalCache[Instance.Name] = Instance.Save
+	else
+		error("The save name "..Instance.Name.."already exists!")
+	end
+	return Instance
+end
+
+function RCS.Load(InstanceAndName)
+	return InternalCache[InstanceAndName]
+end
+
+function RCS.Remove(InstanceAndName)
+	InternalCache[InstanceAndName] = nil
 end
 
 return RCS

@@ -8,28 +8,28 @@ function __CHECK__()
 		error("This script requires RCS.lua. Please install it on your turtle.")
 	end
 	local cTorch, cCoalBlock, cChest, cCobblestone, cChunkloader = {}, {}, {}, {}, {}
-	--term.write("Checking inventory, please wait\n")
+	print("Checking inventory, please wait\n")
 	os.sleep(1)
 	for num1 = 1, 5, 1 do
 		local SelectedItem = turtle.getItemDetail(num1)["name"]
 		if SelectedItem == "minecraft:torch" then
-			--print("Torches: success") 
+			print("Torches: success") 
 			cTorch["Details"], cTorch["Location"] = SelectedItem, num1
 		end
 		if SelectedItem == "minecraft:coal_block" then
-			--print("CoalBlock: success")
+			print("CoalBlock: success")
 			cCoalBlock["Details"], cCoalBlock["Location"] = SelectedItem, num1
 		end
 		if SelectedItem == "minecraft:chest" then 
-			--print("Chest: success")
+			print("Chest: success")
 			cChest["Details"], cChest["Location"] = SelectedItem, num1
 		end
 		if SelectedItem == "mychunkloader:chunkloader" then
-			--print("Chunkloader: success")
+			print("Chunkloader: success")
 			cChunkloader["Details"], cChunkloader["Location"] = SelectedItem, num1
 		end
 		if SelectedItem == "minecraft:cobblestone" then 
-			--print("Cobblestone: success")
+			print("Cobblestone: success")
 			cCobblestone["Details"], cCobblestone["Location"] = SelectedItem, num1
 		end
 	end
@@ -48,6 +48,7 @@ function __CHECK__()
 	if not cTorch["Details"] then
 		error("Add torches (a maximum of 64) to any one of the first 5 slots of the turtle")
 	end
+	os.sleep(1)
 	for num1 = 6, 16, 1 do
 		local SelectedItem = turtle.getItemDetail(num1)
 		if SelectedItem then
@@ -60,7 +61,7 @@ function __CHECK__()
 			turtle.refuel()
 		end
 	end
-	--print("Turtle refueled and ready for action.")
+	print("Turtle refueled and ready for action.")
 	return {["Torches"] = cTorch,
 			["CoalBlock"] = cCoalBlock,
 			["Chest"] = cChest,
@@ -71,7 +72,7 @@ function __FOUND_ORE__(Block)
 	-- Not done yet.
 end
 function __MINING__()
-	local Pattern, TunnelsLeft, cImportantItems = {["Length"] = 13, ["PerTunnel"] = 3, ["Tunnels"] = 5}, 5, __CHECK__()
+	local Pattern cImportantItems = {["Length"] = 13, ["PerTunnel"] = 3, ["Tunnels"] = 5}, __CHECK__()
 	local ValidOres = {"minecraft:iron_ore", "minecraft:coal_ore", "minecraft:diamond_ore", "minecraft:lapis_lazuli_ore", "minecraft:gold_ore"}
 	local function CheckSurroundingBlocks()
 		local function Validifer(Block)
